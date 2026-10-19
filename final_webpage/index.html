@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>a castle among the tides</title>
   <link rel="stylesheet" href="style.css">
+  <link type="image/png" sizes="16x16" rel="icon" href="icons8-wave-24.png">
 </head>
 
 <body>
@@ -73,65 +74,65 @@
     <video width="400" height="500" src="CATT_3.mp4" , autoplay muted loop></video>
   </div>
 
-<div class="tide-message">
-<p>write something to send off to the tides.</p>
-<input type="text", id="tmessage", placeholder="...", maxlength="280", autocomplete="off">
-<br>
-<p id="status"></p>
-<!-- <input type="submit" value="Submit"> -->
+  <div class="tide-message">
+    <p>write something to send off to the tides.</p>
+    <input type="text" , id="tmessage" , placeholder="..." , maxlength="280" , autocomplete="off">
+    <br>
+    <p id="status"></p>
+    <!-- <input type="submit" value="Submit"> -->
 
-<p class="d">hit enter to send it off. / inputs are not stored.</p>
-</div>
+    <p class="d">hit enter to send it off. / inputs are not stored.</p>
+  </div>
 
-<div id="o">
-<p>t.g.s. crit ex</p>
-</div>
+  <div id="o">
+    <p>t.g.s. crit ex</p>
+  </div>
 
-<!-- audio from https://youtu.be/92LURIA6P1U?si=UxiJO81Ted_dvtEm -->
-<div id="soundctrls">
+  <!-- audio from https://youtu.be/92LURIA6P1U?si=UxiJO81Ted_dvtEm -->
+  <div id="soundctrls">
     <audio id="ambient" src="REC1.mp3" loop></audio>
     <button id="sound">sound</button>
-</div>
+  </div>
 
 
-<!-- CLAUDE javascript starts -->
-<script>
+  <!-- CLAUDE javascript starts -->
+  <script>
 
-  // sound button
-const ambient = document.getElementById('ambient');
-const soundBtn = document.getElementById('sound');
+    // sound button
+    const ambient = document.getElementById('ambient');
+    const soundBtn = document.getElementById('sound');
 
-soundBtn.addEventListener('click', () => {
-    if (ambient.paused) {
+    soundBtn.addEventListener('click', () => {
+      if (ambient.paused) {
         ambient.play();
         soundBtn.textContent = 'sound off';
-    } else {
+      } else {
         ambient.pause();
         soundBtn.textContent = 'sound';
-    }
-});
+      }
+    });
 
-// input box
-const input = document.getElementById('tmessage');
+    // input box
+    const input = document.getElementById('tmessage');
 
-input.addEventListener('keydown', (e) => {
-    if (e.key !== 'Enter') return;
-    e.preventDefault();
+    input.addEventListener('keydown', (e) => {
+      if (e.key !== 'Enter') return;
+      e.preventDefault();
 
-    if (!input.value.trim()) return;                  // ignore an empty box
-    if (input.classList.contains('pulsing')) return;  // ignore Enter mid-pulse
+      if (!input.value.trim()) return;                  // ignore an empty box
+      if (input.classList.contains('pulsing')) return;  // ignore Enter mid-pulse
 
-    input.classList.add('pulsing');                   // starts the pulse
-});
+      input.classList.add('pulsing');                   // starts the pulse
+    });
 
-// when the animation finishes, clear the text and reset
-input.addEventListener('animationend', () => {
-    input.value = '';
-    input.classList.remove('pulsing');
-});
+    // when the animation finishes, clear the text and reset
+    input.addEventListener('animationend', () => {
+      input.value = '';
+      input.classList.remove('pulsing');
+    });
 
-</script>
-<!-- CLAUDE javascript ends -->
+  </script>
+  <!-- CLAUDE javascript ends -->
 
 </body>
 
