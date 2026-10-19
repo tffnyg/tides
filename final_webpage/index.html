@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>A Castle Among the Tides</title>
+  <title>a castle among the tides</title>
   <link rel="stylesheet" href="style.css">
 </head>
 
@@ -66,6 +66,7 @@
   <!-- freefrontend.com code unscramble text ends -->
 
 
+
   <div class="videos">
     <video width="400" height="500" src="CATT_1.mp4" , autoplay muted loop></video>
     <video width="400" height="500" src="CATT_2.mp4" , autoplay muted loop></video>
@@ -76,6 +77,7 @@
 <p>write something to send off to the tides.</p>
 <input type="text", id="tmessage", placeholder="...", maxlength="280", autocomplete="off">
 <br>
+<p id="status"></p>
 <!-- <input type="submit" value="Submit"> -->
 
 <p class="d">hit enter to send it off. / inputs are not stored.</p>
@@ -85,26 +87,49 @@
 <p>t.g.s. crit ex</p>
 </div>
 
+<!-- audio from https://youtu.be/92LURIA6P1U?si=UxiJO81Ted_dvtEm -->
+<div id="soundctrls">
+    <audio id="ambient" src="REC1.mp3" loop></audio>
+    <button id="sound">sound</button>
+</div>
+
+
 <!-- CLAUDE javascript starts -->
 <script>
-const input = document.getElementById('tmessage');
-input.addEventListener('keydown', (e) => {
-    if (e.key !== 'Enter') return;           // ignore every other key
-    e.preventDefault();                      // stops any form submit or page reload
 
-    if (!input.value.trim()) return;         // do nothing if the box is empty
-    if (input.classList.contains('fading')) return;   // ignore Enter mid-animation
+  // sound button
+const ambient = document.getElementById('ambient');
+const soundBtn = document.getElementById('sound');
 
-    input.classList.add('fading');           // starts the swipe
-
-    setTimeout(() => {
-        input.classList.add('reset');        // turn off the transition...
-        input.value = '';                    // ...clear the text...
-        input.classList.remove('fading');    // ...and snap back in place
-        void input.offsetWidth;              // forces the browser to apply it
-        input.classList.remove('reset');     // re-enable the transition
-    }, 800);                                 // match the 0.8s in your CSS
+soundBtn.addEventListener('click', () => {
+    if (ambient.paused) {
+        ambient.play();
+        soundBtn.textContent = 'sound off';
+    } else {
+        ambient.pause();
+        soundBtn.textContent = 'sound';
+    }
 });
+
+// input box
+const input = document.getElementById('tmessage');
+
+input.addEventListener('keydown', (e) => {
+    if (e.key !== 'Enter') return;
+    e.preventDefault();
+
+    if (!input.value.trim()) return;                  // ignore an empty box
+    if (input.classList.contains('pulsing')) return;  // ignore Enter mid-pulse
+
+    input.classList.add('pulsing');                   // starts the pulse
+});
+
+// when the animation finishes, clear the text and reset
+input.addEventListener('animationend', () => {
+    input.value = '';
+    input.classList.remove('pulsing');
+});
+
 </script>
 <!-- CLAUDE javascript ends -->
 
