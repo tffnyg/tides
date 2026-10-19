@@ -1,0 +1,282 @@
+body {
+  font-family: 'Courier New', Courier, monospace;
+}
+
+h1 {
+  font-weight: lighter;
+  text-align: center;
+  margin-top: 10%;
+  font-size: 1em;
+}
+
+.videos {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 100px;
+  margin-bottom: 50px;
+  width: 100%;
+  height: auto;
+  max-width: 400px;
+}
+
+@media (max-width: 600px) {
+  .videos {
+    flex-direction: column;
+    align-items: center;
+    /* margin-top: 200px; */
+  }
+
+  .videos video {
+    width: 100%;
+    max-width: 300px;
+    height: auto;
+  }
+}
+
+/* freefrontend.com unscramble code starts  */
+@import url(https://fonts.bunny.net/css?family=noto-sans-mono:400);
+@layer base, mouse, demo;
+
+@layer demo {
+  @property --page-offset {
+    syntax: "<number>";
+    inherits: true;
+    initial-value: 75;
+  }
+
+  :root {
+    --cta: rgb(87, 193, 230);
+    --mouse-color: var(--cta);
+    --first-word-color: var(--cta);
+    --letter-spacing: 1ch;
+    --f-size: clamp(1rem, 2.5vw + .045rem, 1.5rem);
+  }
+
+  body {
+    height: 800svh;
+    font-family: 'Courier New', Courier, monospace;
+  }
+
+  .scramble {
+    --count: sibling-count();
+    position: fixed;
+    left: 50%;
+    top: 12%;
+    translate: -50% -50%;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1ch;
+
+    animation: --page-scroll 1s linear;
+    animation-timeline: scroll(root block);
+    animation-timing-function: steps(100);
+  }
+
+  .scramble>* {
+    perspective: 300px;
+    transform-style: preserve-3d;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 0;
+  }
+
+  .scramble>*:nth-child(5) {
+    color: var(--first-word-color);
+  }
+
+  .scramble>*>span {
+    --i: sibling-index();
+    --dir: calc(1 - 2 * mod(var(--i), 2));
+    --rand: calc(mod((var(--i) * 7 + 20), 4) - 4);
+    --wave: sin(calc(var(--i) * 17deg));
+
+    /* y position */
+    --start-y: calc((var(--rand) + var(--wave)) * var(--dir) * var(--page-offset) * 1px);
+
+    /* depth */
+    --z: calc(abs(var(--rand) * 2 + var(--wave)));
+    --depth-factor: calc(var(--page-offset) * 0.02);
+    --start-z: calc(var(--z) * var(--depth-factor) * 13px);
+
+    transform:
+      translate3d(0,
+        var(--start-y),
+        var(--start-z));
+
+    display: inline-block;
+    position: relative;
+    font-size: var(--f-size);
+  }
+
+  @keyframes --page-scroll {
+    to {
+      --page-offset: 0;
+    }
+  }
+}
+
+/* the mouse icon is just to indicate scroll, it is not relevant to the demo */
+@layer mouse {
+  .mouse {
+    pointer-events: none;
+    position: fixed;
+    bottom: 10px;
+    left: 50%;
+    translate: -50% 0;
+    display: block;
+    width: 50px;
+    height: 50px;
+    opacity: 1;
+    color: var(--mouse-color);
+    display: none;
+    animation-name: mouse;
+    animation-duration: 1s;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+    animation-timeline: scroll(root block);
+  }
+
+  @supports (animation-timeline: scroll()) {
+    .mouse {
+      display: none;
+    }
+  }
+
+  @keyframes mouse {
+    95% {
+      opacity: 1;
+    }
+
+    100% {
+      opacity: 0;
+    }
+  }
+}
+
+/* general styling not relevant for this demo */
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+
+  :root {
+    color-scheme: light dark;
+    --bg-dark: rgb(12, 10, 9);
+    --bg-light: rgb(248, 244, 238);
+    --txt-light: rgb(10, 10, 10);
+    --txt-dark: rgb(245, 245, 245);
+    --line-light: rgba(0 0 0 / .25);
+    --line-dark: rgba(255 255 255 / .25);
+
+    --clr-bg: light-dark(var(--bg-light), var(--bg-dark));
+    --clr-txt: light-dark(var(--txt-light), var(--txt-dark));
+    --clr-lines: light-dark(var(--line-light), var(--line-dark));
+  }
+
+  body {
+    background-color: var(--clr-bg);
+    color: var(--clr-txt);
+    min-height: 100svh;
+    margin: 0;
+    padding: 1rem;
+    font-family: system-ui, sans-serif;
+    font-size: 1rem;
+    line-height: 1.5;
+    display: grid;
+    place-items: center;
+    grid-template-rows: 1fr auto;
+  }
+
+  @supports not (animation-timeline: scroll()) {
+    body::before {
+      content: "Sorry, your browser doesn't support animation-timeline";
+      position: fixed;
+      top: 2rem;
+      left: 50%;
+      translate: -50% 0;
+      font-size: 0.8rem;
+    }
+  }
+
+  footer a {
+    font-size: .8rem;
+    color: var(--cta);
+    z-index: 2;
+    text-decoration: none;
+    display: block;
+    transition: transform 150ms ease-in-out;
+  }
+
+  footer a:hover {
+    transform: scale(1.12);
+  }
+}
+
+/* freefrontend.com unscramble code ends */
+
+.tide-message {
+  padding-top: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  font:'Courier New', Courier, monospace;
+  width: 100%;
+}
+
+#tmessage {
+    border: none;
+    border-bottom: 1px solid rgb(87, 193, 230);
+    border-radius: 0;
+    background: transparent;
+    min-width: 50%;
+    padding: 0.5em;
+    font: inherit;
+    font-size: 0.75em;
+}
+
+.d {
+  font-size: 0.75em;
+  opacity: 50%;
+  margin-top: -1em;
+}
+
+#o {
+  font-size: 0.75em;
+  opacity: 50%;
+  bottom: 0;
+  padding-right: 0.5em;
+  width: 100%;
+  height: auto;
+}
+
+#o p {
+  text-align: end;
+}
+
+
+/* CLAUDE swipe animation code starts */
+.tide-message input {
+    transition: transform 0.8s ease-in, opacity 0.8s ease-in, filter 0.8s ease-in;
+}
+
+/* the swipe-away state */
+.tide-message input.fading {
+    transform: translateX(80px);   /* use -80px to swipe left */
+    opacity: 0;
+    filter: blur(4px);
+}
+
+/* snaps back instantly after the swipe, with no animation */
+.tide-message input.reset {
+    transition: none;
+}
+
+.tide-message input:focus {
+    outline: none;
+    box-shadow: none;       /* removes any glow you added earlier */
+}
+/* CLAUDE swipe animation code ends*/

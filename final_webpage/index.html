@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>A Castle Among the Tides</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <!-- <h1>a castle among the tides</h1> -->
+
+  <!-- freefrontend.com code unscramble text starts -->
+  <section class="scramble">
+    <p aria-label="Meaning">
+      <span aria-hidden="true">a</span>
+    </p>
+
+    <p aria-label="castle">
+      <span aria-hidden="true">c</span>
+      <span aria-hidden="true">a</span>
+      <span aria-hidden="true">s</span>
+      <span aria-hidden="true">t</span>
+      <span aria-hidden="true">l</span>
+      <span aria-hidden="true">e</span>
+    </p>
+
+    <p aria-label="among">
+      <span aria-hidden="true">a</span>
+      <span aria-hidden="true">m</span>
+      <span aria-hidden="true">o</span>
+      <span aria-hidden="true">n</span>
+      <span aria-hidden="true">g</span>
+    </p>
+
+    <p aria-label="the">
+      <span aria-hidden="true">t</span>
+      <span aria-hidden="true">h</span>
+      <span aria-hidden="true">e</span>
+    </p>
+
+    <p aria-label="emerges,">
+      <span aria-hidden="true">t</span>
+      <span aria-hidden="true">i</span>
+      <span aria-hidden="true">d</span>
+      <span aria-hidden="true">e</span>
+      <span aria-hidden="true">s</span>
+    </p>
+  </section>
+
+  <div class="icon">
+    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 40" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mouse">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M6 3m0 4a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v10a4 4 0 0 1 -4 4h-4a4 4 0 0 1 -4 -4z" />
+      <path d="M12 7l0 4" />
+      <path d="M8 26l4 4l4 -4">
+        <animateTransform attributeType="XML" attributeName="transform" type="translate" values="0 0; 0 4; 0 0" dur="1s"
+          repeatCount="indefinite" />
+      </path>
+    </svg>
+  </div>
+
+  <!-- freefrontend.com code unscramble text ends -->
+
+
+  <div class="videos">
+    <video width="400" height="500" src="CATT_1.mp4" , autoplay muted loop></video>
+    <video width="400" height="500" src="CATT_2.mp4" , autoplay muted loop></video>
+    <video width="400" height="500" src="CATT_3.mp4" , autoplay muted loop></video>
+  </div>
+
+<div class="tide-message">
+<p>write something to send off to the tides.</p>
+<input type="text", id="tmessage", placeholder="...", maxlength="280", autocomplete="off">
+<br>
+<!-- <input type="submit" value="Submit"> -->
+
+<p class="d">hit enter to send it off. / inputs are not stored.</p>
+</div>
+
+<div id="o">
+<p>t.g.s. crit ex</p>
+</div>
+
+<!-- CLAUDE javascript starts -->
+<script>
+const input = document.getElementById('tmessage');
+input.addEventListener('keydown', (e) => {
+    if (e.key !== 'Enter') return;           // ignore every other key
+    e.preventDefault();                      // stops any form submit or page reload
+
+    if (!input.value.trim()) return;         // do nothing if the box is empty
+    if (input.classList.contains('fading')) return;   // ignore Enter mid-animation
+
+    input.classList.add('fading');           // starts the swipe
+
+    setTimeout(() => {
+        input.classList.add('reset');        // turn off the transition...
+        input.value = '';                    // ...clear the text...
+        input.classList.remove('fading');    // ...and snap back in place
+        void input.offsetWidth;              // forces the browser to apply it
+        input.classList.remove('reset');     // re-enable the transition
+    }, 800);                                 // match the 0.8s in your CSS
+});
+</script>
+<!-- CLAUDE javascript ends -->
+
+</body>
+
+</html>
