@@ -141,7 +141,7 @@ h1 {
 
   @supports (animation-timeline: scroll()) {
     .mouse {
-      display: none;
+      display: block;
     }
   }
 
